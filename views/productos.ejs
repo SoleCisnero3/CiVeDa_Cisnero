@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= nombrePagina %></title>
+    <link href="/css/tailwind.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <header class="bg-green-600 text-white p-6 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-extrabold"><%= nombrePagina %></h1>
+        </div>
+    </header>
+    <main class="container mx-auto p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <% productos.forEach(producto => { %>
+                <div class="bg-white border border-gray-200 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <% if (producto.imagen) { %>
+                        <div class="w-full h-56 flex items-center justify-center bg-gray-100">
+                            <img src="/uploads/imagen-productos/<%= producto.imagen %>" alt="Imagen del producto" class="max-w-full max-h-full object-contain">
+                        </div>
+                    <% } %>
+                    <div class="p-6">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-3"><%= producto.nombre %></h2>
+                        <p class="text-gray-600 mb-4 line-clamp-3"><%= producto.descripcion %></p>
+                        <p class="text-gray-900 font-bold text-lg">$<%= producto.precio %></p>
+                        <p class="text-gray-600 mb-4">Categoría: <%= producto.categoria.nombre %></p>
+                        <a href="/productos/<%= producto.id %>" class="bg-green-500 text-white font-bold py-2 px-4 rounded block text-center hover:bg-green-600 transition-colors duration-300">Ver Producto</a>
+                        <form action="/carrito/agregar" method="POST" class="mt-3">
+                            <input type="hidden" name="productoId" value="<%= producto.id %>">
+                            <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded block text-center hover:bg-blue-600 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block w-6 h-6 mr-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                </svg>
+                                Añadir al carrito
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+        <div class="mt-8 flex justify-between items-center">
+            <div>
+                <% if (paginaActual > 1) { %>
+                    <a href="?pagina=<%= paginaActual - 1 %>" class="bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded hover:bg-gray-300 transition-colors duration-300">Anterior</a>
+                <% } %>
+            </div>
+            <div>
+                <% if (paginaActual < paginas) { %>
+                    <a href="?pagina=<%= paginaActual + 1 %>" class="bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded hover:bg-gray-300 transition-colors duration-300">Siguiente</a>
+                <% } %>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

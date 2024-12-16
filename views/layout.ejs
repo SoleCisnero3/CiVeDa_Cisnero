@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= nombrePagina %></title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Enlace a tu archivo CSS -->
+    <!-- Agregar más recursos si es necesario -->
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/productos">Productos</a></li>
+                <li><a href="/categorias">Categorías</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+                <% if (isAuthenticated) { %>
+                    <li><a href="/dashboard">Mi Panel</a></li>
+                    <li><a href="/logout">Cerrar sesión</a></li>
+                <% } else { %>
+                    <li><a href="/login">Iniciar sesión</a></li>
+                    <li><a href="/register">Registrarse</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Área de contenido principal -->
+    <main>
+        <!-- Aquí se inyectará el contenido de las vistas renderizadas -->
+        <%- body %>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2024 Mi Veterinaria - Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Agregar más scripts si es necesario -->
+    <script src="/js/main.js"></script>
+</body>
+</html>

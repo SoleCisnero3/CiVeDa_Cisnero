@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Turnos</title>
+    <link href="/css/app.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+    <main class="flex justify-center items-center min-h-screen p-4">
+        <div class="w-full max-w-lg bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-6 text-center">Mis Turnos</h1>
+            <ul class="space-y-4">
+                <% if(turnos.length > 0) { %>
+                    <% turnos.forEach(turno => { %>
+                        <li class="p-4 bg-gray-200 rounded-lg shadow-md">
+                            <p><strong>Fecha:</strong> <%= turno.fecha %></p>
+                            <p><strong>Hora:</strong> <%= turno.hora %></p>
+                            <p><strong>Mascota:</strong> <%= turno.nombreMascota %> (<%= turno.especieMascota %>, <%= turno.razaMascota %>)</p>
+                            
+                            <!-- Botones de Editar y Cancelar -->
+                            <div class="mt-4 flex justify-between">
+                                <a href="/editar-turno/<%= turno.id %>" class="text-blue-500 hover:underline">Editar Turno</a>
+                                <form action="/eliminar-turno/<%= turno.id %>" method="POST">
+                                <button type="submit" class="text-red-500 hover:underline">Cancelar Turno</a>
+                                </form>
+                            </div>
+                        </li>
+                    <% }) %>
+                <% } else { %>
+                    <p>No tienes turnos reservados.</p>
+                <% } %>
+            </ul>
+        </div>
+    </main>
+</body>
+</html>
+
