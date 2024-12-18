@@ -6,7 +6,7 @@ import expressLayouts from 'express-ejs-layouts';
 import path from 'path';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
-import appRoutes from './routes/appRoutes.js'; // Importa tus rutas de la aplicación
+import appRoutes from './routes/appRoutes.js'; // Importa rutas de la aplicación
 import conectarDB from './config/db.js'; // Importa la función para conectar a la BD
 import './jobs/limpiarTurnos.js'; // Importa el job de limpieza de turnos
 
