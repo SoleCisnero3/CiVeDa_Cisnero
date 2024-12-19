@@ -1267,3 +1267,46 @@ video {
     margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
   }
 }
+
+/* Subrayado animado */
+.underline-animation {
+  position: relative;
+}
+.underline-animation::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease-in-out;
+}
+.underline-animation:hover::after {
+  width: 100%;
+}
+
+/* Sombras en los botones */
+.btn-shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar sticky */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #4caf50; /* Fondo verde principal */
+}
+
+/* Footer estilos */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+}
+.logo {
+  height: 80px;
+  width: 80px;
+}
